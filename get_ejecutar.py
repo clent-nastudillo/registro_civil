@@ -25,17 +25,12 @@ def get_defunciones_no_ejecutadas(connection):
         print(f"Error al realizar la consulta: {e}")
         return None
 
-# def main():
-#     db_name = 'bd_registro_civil.db'
-#     connection = connect_to_db(db_name)
-    
-#     if connection:
-#         defunciones_no_ejecutadas = get_defunciones_no_ejecutadas(connection)
-#         if defunciones_no_ejecutadas:
-#             for defuncion in defunciones_no_ejecutadas:
-#                 print(defuncion)
-        
-#         close_connection(connection)
-
-# if __name__ == "__main__":
-#     main()
+def update_row(connection, defuncion, data):
+    try:
+        cursor = connection.cursor()
+        query = "UPDATE tb_defunciones SET ejecutado = ?, certificado = ?, fecha_inicio = ?, fecha_fin = ? WHERE id = ?"
+        cursor.execute(query, (data[0], data[1], data[2], data[3], defuncion[0]))
+        connection.commit()
+        print("DATOS ACTUALIZADOS")
+    except sqlite3.Error as e:
+        print(f"Error al actualizar la fila: {e}")

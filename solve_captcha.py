@@ -11,11 +11,11 @@ def solve_captcha(driver):
     check_button_xpath = '//*[@id="jar"]'
     try:
         captcha_img = WebDriverWait(driver,3).until(EC.presence_of_element_located((By.XPATH, img_xpath)))
-        captcha_img.screenshot(r"C:\Users\niky_\OneDrive\Escritorio\Demo\captcha.png")
+        captcha_img.screenshot(r"C:\Users\niky_\OneDrive\Escritorio\demo\registro_civil\captcha.png")
         solver = TwoCaptcha('f81915426f6d04b7152414d4457221c0')
         try:
             print("RESOLVIENDO CAPTCHA")
-            result = solver.normal(r"C:\Users\niky_\OneDrive\Escritorio\Demo\captcha.png")
+            result = solver.normal(r"C:\Users\niky_\OneDrive\Escritorio\demo\registro_civil\captcha.png")
         except Exception as e:
             print(e)
         else:
